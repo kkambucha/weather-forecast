@@ -8,6 +8,10 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
       </header>
+      <p>Regular</p>
+      <p className="medium">Medium</p>
+      <p className="bold">Bold</p>
+      <p className="merriweather">Simple but powerful weather forcasting service based on OpenWeatherMap API</p>
     </div>
   );
 }
