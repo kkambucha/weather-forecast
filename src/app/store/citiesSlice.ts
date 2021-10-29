@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
-import * as _ from 'lodash'
+import _ from 'lodash'
 
 import { RootState } from './index'
 
@@ -33,9 +33,13 @@ const initialState: CitiesState = {
 // Actions
 export const fetchCities = createAsyncThunk(
   'cities/fetchCities',
-  async (name: string) => {
-    const data = await fetchCitiesByName(name)
-    console.log('data', data)
+  async (cityName: string) => {
+    try {
+      const res = await fetchCitiesByName(cityName)
+      return res.data.list
+    } catch (err) {
+      // handle error
+    }
   }
 )
 
@@ -65,8 +69,12 @@ const citiesSlice = createSlice({
         // based on the slice state and the `pending` action creator
         console.log(state, action, 'cities pending')
       })
-      .addCase(fetchCities.fulfilled, () => {
+      .addCase(fetchCities.fulfilled, (state, { payload }) => {
+        console.log('payload', payload)
         console.log('fetch cities fulfilled')
+      })
+      .addCase(fetchCities.rejected, () => {
+        console.log('fetch cities rejected')
       })
   },
 })

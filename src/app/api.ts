@@ -1,11 +1,16 @@
 import axios from 'axios'
 
+interface City {
+  name: string
+  type: string
+}
+
 const axiosInstance = axios.create({
   baseURL: 'https://api.openweathermap.org/data/2.5/',
 })
 
 export const fetchCitiesByName = async (name: string): Promise<any> => {
-  const res = await axiosInstance.get('find', {
+  return await axiosInstance.get<City[]>('find', {
     params: {
       q: name || 'london',
       type: 'like',
@@ -14,5 +19,4 @@ export const fetchCitiesByName = async (name: string): Promise<any> => {
       units: 'metric',
     },
   })
-  return res.data
 }
