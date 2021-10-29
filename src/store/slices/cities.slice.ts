@@ -1,9 +1,9 @@
 import _ from 'lodash'
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { RootState } from './index'
+import { RootState } from 'store'
 
-import { fetchCitiesByName } from '../api'
+import { fetchCitiesByName } from 'api/fetchCitiesByName'
 
 type ApiStatus = 'idle' | 'loading' | 'failed'
 

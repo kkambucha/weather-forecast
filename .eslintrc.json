@@ -26,8 +26,8 @@
         "@typescript-eslint"
     ],
     "rules": {
-        "indent": ["error", 2],
-        "import/no-named-as-default-member": "off"
+        "indent": ["error", 2]
+//        "import/no-named-as-default-member": "off"
     },
     "settings": {
         "import/resolver": {

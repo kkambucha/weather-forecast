@@ -1,7 +1,7 @@
-import React, { FC, ChangeEvent } from 'react'
+import React, { FC, ChangeEvent, useState } from 'react'
 
 export const Search: FC = () => {
-  const [value, setValue] = React.useState('')
+  const [value, setValue] = useState('')
   return (
     <input
       value={value}

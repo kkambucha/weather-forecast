@@ -1,14 +1,14 @@
 import React, { FC } from 'react'
 
-import { useAppSelector, useAppDispatch } from 'app/store'
+import { useAppSelector, useAppDispatch } from 'store'
 import {
   citiesSelector,
   addCity,
   deleteCity,
   fetchCities,
-} from 'app/store/cities.slice'
+} from 'store/slices/cities.slice'
 
-import { Search } from 'components/search'
+import { Search } from 'components/Search'
 import logo from 'assets/logo.svg'
 import 'styles/index.scss'
 

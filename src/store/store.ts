@@ -1,6 +1,6 @@
 import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit'
 
-import citiesSlice from './cities.slice'
+import citiesSlice from './slices/cities.slice'
 
 const store = configureStore({
   reducer: {
