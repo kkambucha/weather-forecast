@@ -1,5 +1,5 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import _ from 'lodash'
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import { RootState } from './index'
 
@@ -30,7 +30,7 @@ const initialState: CitiesState = {
   status: 'idle',
 }
 
-// Actions
+// Async thunks
 export const fetchCities = createAsyncThunk(
   'cities/fetchCities',
   async (cityName: string) => {
@@ -45,8 +45,6 @@ export const fetchCities = createAsyncThunk(
 
 // Selectors
 export const citiesSelector = (state: RootState): City[] => state.cities.cities
-
-// Slice
 
 const citiesSlice = createSlice({
   name: 'cities',

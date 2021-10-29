@@ -1,16 +1,16 @@
 import React, { FC } from 'react'
 
-import { useAppSelector, useAppDispatch } from './app/hooks'
+import { useAppSelector, useAppDispatch } from 'app/store'
 import {
   citiesSelector,
   addCity,
   deleteCity,
   fetchCities,
-} from './app/store/citiesSlice'
+} from 'app/store/cities.slice'
 
 import { Search } from 'components/search'
-import logo from './assets/logo.svg'
-import './styles/index.scss'
+import logo from 'assets/logo.svg'
+import 'styles/index.scss'
 
 const App: FC = () => {
   const cities = useAppSelector(citiesSelector)
