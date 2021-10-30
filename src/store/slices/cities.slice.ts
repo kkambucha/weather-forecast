@@ -1,11 +1,10 @@
 import _ from 'lodash'
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 
+import { ApiStatus } from 'api/types'
 import { RootState } from 'store'
 
 import { fetchCitiesByName } from 'api/fetchCitiesByName'
-
-type ApiStatus = 'idle' | 'loading' | 'failed'
 
 type City = {
   id: number

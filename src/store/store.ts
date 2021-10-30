@@ -1,10 +1,12 @@
 import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit'
 
 import citiesSlice from './slices/cities.slice'
+import searchSlice from './slices/search.slice'
 
 const store = configureStore({
   reducer: {
     cities: citiesSlice,
+    search: searchSlice,
   },
 })
 

@@ -1,12 +1,10 @@
 import { AxiosResponse } from 'axios'
 
-import { OpenWeatherResponse } from './types'
+import { OpenWeatherResponse, RequestParams } from './types'
 import { request } from './request'
 
-interface Params {
+interface Params extends RequestParams {
   id: string
-  units: 'standard' | 'metric' | 'imperial'
-  appid: string
 }
 
 export const fetchWeatherByCityIds = async (
