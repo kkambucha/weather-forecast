@@ -20,11 +20,13 @@ export const fetchCities = createAsyncThunk(
     try {
       const res = await fetchCitiesByName(cityName)
       if (res.status === 200) {
+        console.log('res', res)
         return res.data.list
       } else {
         throw new Error('Server error')
       }
     } catch (err) {
+      console.log('Error!', err)
       return rejectWithValue(err)
       // handle error
     }
@@ -35,7 +37,11 @@ export const fetchCities = createAsyncThunk(
 const searchSlice = createSlice({
   name: 'search',
   initialState,
-  reducers: {},
+  reducers: {
+    clearResult: (state: SearchState) => {
+      state.result = []
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchCities.pending, (state: SearchState) => {
@@ -54,5 +60,7 @@ const searchSlice = createSlice({
       })
   },
 })
+
+export const { clearResult } = searchSlice.actions
 
 export default searchSlice.reducer

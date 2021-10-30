@@ -5,12 +5,13 @@ import React, {
   useState,
   useRef,
   useCallback,
+  useEffect,
 } from 'react'
 import { debounce } from 'lodash'
 
 import { City } from 'api/types'
 import { useAppSelector, useAppDispatch } from 'store'
-import { fetchCities } from 'store/slices/search.slice'
+import { fetchCities, clearResult } from 'store/slices/search.slice'
 import { OutsideClickWatcher } from 'components/OutsideClickWatcher'
 
 const FETCH_DEBOUNCE_TIME = 400
@@ -23,7 +24,9 @@ export const Search: FC = () => {
   // useRef for creating function just once
   const dispatchFetchCitiesDebounced = useRef(
     debounce((cityName: string) => {
-      dispatch(fetchCities(cityName))
+      if (cityName) {
+        dispatch(fetchCities(cityName))
+      }
     }, FETCH_DEBOUNCE_TIME)
   )
 
@@ -35,9 +38,15 @@ export const Search: FC = () => {
     [searchText]
   )
 
+  const handleClearResult = () => {
+    dispatch(clearResult())
+  }
+
+  useEffect(handleClearResult, [searchText, dispatch])
+
   return (
     <div>
-      <OutsideClickWatcher onClickOutside={() => console.log('outside click!')}>
+      <OutsideClickWatcher onClickOutside={handleClearResult}>
         <form onSubmit={handleOnSubmit}>
           <input
             value={searchText}
