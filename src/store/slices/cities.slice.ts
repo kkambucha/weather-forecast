@@ -20,12 +20,12 @@ type City = {
 }
 
 interface CitiesState {
-  cities: City[]
+  list: City[]
   status: ApiStatus
 }
 
 const initialState: CitiesState = {
-  cities: [],
+  list: [],
   status: 'idle',
 }
 
@@ -43,20 +43,17 @@ export const fetchCities = createAsyncThunk(
 )
 
 // Selectors
-export const citiesSelector = (state: RootState): City[] => state.cities.cities
+export const citiesSelector = (state: RootState): City[] => state.cities.list
 
 const citiesSlice = createSlice({
   name: 'cities',
   initialState,
   reducers: {
     addCity: (state, action: PayloadAction<City>) => {
-      state.cities.push(action.payload)
+      state.list.push(action.payload)
     },
     deleteCity: (state, action: PayloadAction<number>) => {
-      _.remove(
-        state.cities,
-        (city: City): boolean => city.id === action.payload
-      )
+      _.remove(state.list, (city: City): boolean => city.id === action.payload)
     },
   },
   extraReducers: (builder) => {

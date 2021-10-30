@@ -14,7 +14,7 @@ const initialState: SearchState = {
 }
 
 // Async thunks
-export const fetchCitiesThunk = createAsyncThunk(
+export const fetchCities = createAsyncThunk(
   'search/fetchCities',
   async (cityName: string, { rejectWithValue /* , dispatch, getState */ }) => {
     try {
@@ -38,18 +38,18 @@ const searchSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchCitiesThunk.pending, (state: SearchState) => {
+      .addCase(fetchCities.pending, (state: SearchState) => {
         state.result = []
         state.status = 'pending'
       })
       .addCase(
-        fetchCitiesThunk.fulfilled,
+        fetchCities.fulfilled,
         (state: SearchState, { payload }: PayloadAction<City[]>) => {
           state.result = payload
           state.status = 'idle'
         }
       )
-      .addCase(fetchCitiesThunk.rejected, (state: SearchState) => {
+      .addCase(fetchCities.rejected, (state: SearchState) => {
         state.status = 'rejected'
       })
   },

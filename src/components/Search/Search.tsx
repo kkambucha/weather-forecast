@@ -6,11 +6,12 @@ import React, {
   useRef,
   useCallback,
 } from 'react'
+import { debounce } from 'lodash'
 
 import { City } from 'api/types'
 import { useAppSelector, useAppDispatch } from 'store'
-import { fetchCitiesThunk } from 'store/slices/search.slice'
-import { debounce } from 'lodash'
+import { fetchCities } from 'store/slices/search.slice'
+import { OutsideClickWatcher } from 'components/OutsideClickWatcher'
 
 const FETCH_DEBOUNCE_TIME = 400
 
@@ -22,7 +23,7 @@ export const Search: FC = () => {
   // useRef for creating function just once
   const dispatchFetchCitiesDebounced = useRef(
     debounce((cityName: string) => {
-      dispatch(fetchCitiesThunk(cityName))
+      dispatch(fetchCities(cityName))
     }, FETCH_DEBOUNCE_TIME)
   )
 
@@ -36,23 +37,25 @@ export const Search: FC = () => {
 
   return (
     <div>
-      <form onSubmit={handleOnSubmit}>
-        <input
-          value={searchText}
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            setSearchText(e.target.value)
-          }
-        />
-        <button>v</button>
-      </form>
-      {status === 'pending' && <span>loading...</span>}
-      {Boolean(result.length) && (
-        <ul>
-          {result.map((city: City, index: number) => (
-            <li key={index}>{city.name}</li>
-          ))}
-        </ul>
-      )}
+      <OutsideClickWatcher onClickOutside={() => console.log('outside click!')}>
+        <form onSubmit={handleOnSubmit}>
+          <input
+            value={searchText}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setSearchText(e.target.value)
+            }
+          />
+          <button>v</button>
+        </form>
+        {status === 'pending' && <span>loading...</span>}
+        {Boolean(result.length) && (
+          <ul>
+            {result.map((city: City, index: number) => (
+              <li key={index}>{city.name}</li>
+            ))}
+          </ul>
+        )}
+      </OutsideClickWatcher>
     </div>
   )
 }
