@@ -7,11 +7,12 @@ import React, {
   useCallback,
   useEffect,
 } from 'react'
-import { debounce } from 'lodash'
+import _ from 'lodash'
 
 import { City } from 'api/types'
 import { useAppSelector, useAppDispatch } from 'store'
 import { fetchCities, clearResult } from 'store/slices/search.slice'
+import { addCity } from 'store/slices/cities.slice'
 import { OutsideClickWatcher } from 'components/OutsideClickWatcher'
 
 const FETCH_DEBOUNCE_TIME = 400
@@ -23,7 +24,7 @@ export const Search: FC = () => {
 
   // useRef for creating function just once
   const dispatchFetchCitiesDebounced = useRef(
-    debounce((cityName: string) => {
+    _.debounce((cityName: string) => {
       if (cityName) {
         dispatch(fetchCities(cityName))
       }
@@ -60,7 +61,13 @@ export const Search: FC = () => {
         {Boolean(result.length) && (
           <ul>
             {result.map((city: City, index: number) => (
-              <li key={index}>{city.name}</li>
+              <button
+                type="button"
+                key={index}
+                onClick={() => dispatch(addCity(city))}
+              >
+                {city.name}
+              </button>
             ))}
           </ul>
         )}

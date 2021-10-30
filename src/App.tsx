@@ -1,6 +1,7 @@
 import React, { FC } from 'react'
 
 import { Search } from 'components/Search'
+import { Cities } from 'components/Cities'
 import logo from 'assets/logo.svg'
 import 'styles/index.scss'
 
@@ -11,6 +12,7 @@ const App: FC = () => {
         <img src={logo} className="App-logo" alt="logo" />
       </header>
       <Search />
+      <Cities />
       <p>Regular</p>
       <p className="medium">Medium</p>
       <p className="bold">Bold</p>

@@ -1,23 +1,8 @@
-import _ from 'lodash'
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
+import _ from 'lodash'
 
-import { ApiStatus } from 'api/types'
-import { RootState } from 'store'
-
+import { City, ApiStatus } from 'api/types'
 import { fetchCitiesByName } from 'api/fetchCitiesByName'
-
-type City = {
-  id: number
-  name: string
-  weather: {
-    description: string
-    icon: string
-    temp: number
-    pressure: number
-    windSpeed: number
-    humidity: number
-  }
-}
 
 interface CitiesState {
   list: City[]
@@ -42,25 +27,22 @@ export const fetchCities = createAsyncThunk(
   }
 )
 
-// Selectors
-export const citiesSelector = (state: RootState): City[] => state.cities.list
-
 const citiesSlice = createSlice({
   name: 'cities',
   initialState,
   reducers: {
-    addCity: (state, action: PayloadAction<City>) => {
-      state.list.push(action.payload)
+    addCity: (state: CitiesState, { payload }: PayloadAction<City>) => {
+      if (!_.some(state.list, payload)) {
+        state.list.push(payload)
+      }
     },
-    deleteCity: (state, action: PayloadAction<number>) => {
+    deleteCity: (state: CitiesState, action: PayloadAction<number>) => {
       _.remove(state.list, (city: City): boolean => city.id === action.payload)
     },
   },
   extraReducers: (builder) => {
     builder
       .addCase(fetchCities.pending, (state, action) => {
-        // both `state` and `action` are now correctly typed
-        // based on the slice state and the `pending` action creator
         console.log(state, action, 'cities pending')
       })
       .addCase(fetchCities.fulfilled, (state, { payload }) => {

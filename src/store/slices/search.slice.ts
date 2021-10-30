@@ -20,7 +20,6 @@ export const fetchCities = createAsyncThunk(
     try {
       const res = await fetchCitiesByName(cityName)
       if (res.status === 200) {
-        console.log('res', res)
         return res.data.list
       } else {
         throw new Error('Server error')
