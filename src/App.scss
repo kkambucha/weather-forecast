@@ -2,8 +2,8 @@
 @import 'styles/breakpoints';
 
 .App {
-  max-width: 1024px; // maximum width 992 + padding: 0 16px
-  padding: 0 16px;
+  max-width: 1024px; // maximum width 992px + sides padding 16px X 2
+  padding: 0 16px 20px;
   margin: 0 auto;
 }
 

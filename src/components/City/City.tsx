@@ -1,6 +1,7 @@
 import React, { FC } from 'react'
 
 import { City as ICity } from 'store'
+import { CityWeatherProperty } from './CityWeatherProperty'
 import './City.scss'
 import deleteIcon from 'assets/icons/delete.svg'
 import windIcon from 'assets/icons/wind.svg'
@@ -12,36 +13,10 @@ interface CityProps {
   onDelete: (cityId: number) => void
 }
 
-interface CityWeatherPropertyProps {
-  iconPath: string
-  caption: number
-  unit: string
-}
-
 const OPENWEATHER_ICON_URL = 'https://openweathermap.org/img/wn/'
 
 function getOpenWeatherIconURL(icon: string): string {
   return `${OPENWEATHER_ICON_URL}${icon}@2x.png`
-}
-
-const CityWeatherProperty: FC<CityWeatherPropertyProps> = ({
-  iconPath,
-  caption,
-  unit,
-}) => {
-  return (
-    <div className="CityWeatherProperty">
-      <img
-        className="CityWeatherProperty_icon"
-        src={iconPath}
-        alt={caption.toString()}
-      />
-      <span className="CityWeatherProperty_caption">
-        {caption}
-        {unit}
-      </span>
-    </div>
-  )
 }
 
 export const City: FC<CityProps> = ({ city, onDelete }) => {
@@ -70,7 +45,7 @@ export const City: FC<CityProps> = ({ city, onDelete }) => {
           </button>
         </div>
       </div>
-      <div className="City_additional">
+      <div className="City_weatherProperties">
         <CityWeatherProperty
           iconPath={windIcon}
           caption={city.wind.speed}

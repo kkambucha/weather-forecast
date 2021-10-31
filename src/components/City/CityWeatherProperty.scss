@@ -1,0 +1,27 @@
+@import 'styles/breakpoints';
+@import 'styles/variables';
+
+.CityWeatherProperty {
+  display: flex;
+  align-items: center;
+  margin-right: 34px;
+
+  @include g-responsive-after(md) {
+    margin-right: 12px;
+  }
+  @include g-responsive-after(lg) {
+    margin-right: 34px;
+  }
+}
+
+.CityWeatherProperty_icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 4px;
+}
+
+.CityWeatherProperty_caption {
+  color: $gray-500;
+  font-family: $font-family-pt-root;
+  font-size: 16px;
+}
