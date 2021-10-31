@@ -13,10 +13,10 @@ interface CityProps {
   onDelete: (cityId: number) => void
 }
 
-const OPENWEATHER_ICON_URL = 'https://openweathermap.org/img/wn/'
+const OPENWEATHER_ICONS_URL = 'https://openweathermap.org/img/wn/'
 
 function getOpenWeatherIconURL(icon: string): string {
-  return `${OPENWEATHER_ICON_URL}${icon}@2x.png`
+  return `${OPENWEATHER_ICONS_URL}${icon}@2x.png`
 }
 
 export const City: FC<CityProps> = ({ city, onDelete }) => {

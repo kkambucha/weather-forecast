@@ -6,7 +6,7 @@ import {
   Middleware,
 } from '@reduxjs/toolkit'
 
-import { isLocalStorageAvaliable } from 'libs/localstorage'
+import { isLocalStorageAvailable } from 'libs/localstorage'
 import citiesSlice, { hydrate, CitiesState } from './slices/cities.slice'
 import { cityApiSlice } from './slices/cityApi.slice'
 
@@ -30,7 +30,7 @@ const store = configureStore({
 
 // Localstorage
 
-if (isLocalStorageAvaliable()) {
+if (isLocalStorageAvailable()) {
   store.subscribe(() => {
     localStorage.setItem(LS_KEY_NAME, JSON.stringify(store.getState()))
   })
