@@ -13,8 +13,9 @@
 }
 
 .City_additional {
-  padding: 0 32px;
+  padding: 24px 32px 0 32px;
   border-top: 1px solid $gray-200;
+  display: flex;
 }
 
 .City_name {
@@ -60,4 +61,22 @@
   &:focus {
     outline: 0;
   }
+}
+
+.CityWeatherProperty {
+  display: flex;
+  align-items: center;
+  margin-right: 34px;
+}
+
+.CityWeatherProperty_icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 4px;
+}
+
+.CityWeatherProperty_caption {
+  color: $gray-500;
+  font-family: $font-family-pt-root;
+  font-size: 16px;
 }
