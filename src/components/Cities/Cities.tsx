@@ -4,6 +4,7 @@ import { isOpenWeatherErrorType, useAppDispatch, useAppSelector } from 'store'
 import { cityApiSlice } from 'store/slices/cityApi.slice'
 import { deleteCityId } from 'store/slices/cities.slice'
 import { City } from 'components/City'
+import './Cities.scss'
 
 const MINUTES_POLLING_INTERVAL = 15 * 60 * 1000
 
@@ -47,7 +48,7 @@ export const Cities: FC = () => {
             <>
               {data &&
                 data.map((city) => (
-                  <div className="col-4" key={city.id}>
+                  <div className="col-4 Cities_city" key={city.id}>
                     <City city={city} onDelete={handleOnCityDelete} />
                   </div>
                 ))}
