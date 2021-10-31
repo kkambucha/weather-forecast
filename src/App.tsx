@@ -26,7 +26,7 @@ const App: FC = () => {
           <div className="col-4">
             <p className="App_p">
               Simple but powerful weather forcasting service based on
-              OpenWeatherMap
+              OpenWeatherMap API
             </p>
           </div>
           <div className="col-4 pull-right pull-bottom">
