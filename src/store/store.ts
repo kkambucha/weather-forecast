@@ -1,4 +1,10 @@
-import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit'
+import {
+  Action,
+  configureStore,
+  ThunkAction,
+  isRejectedWithValue,
+  Middleware,
+} from '@reduxjs/toolkit'
 
 import { isLocalStorageAvaliable } from 'libs/localstorage'
 import citiesSlice, { hydrate, CitiesState } from './slices/cities.slice'
@@ -6,14 +12,23 @@ import { cityApiSlice } from './slices/cityApi.slice'
 
 export const LS_KEY_NAME = 'weather-forecast'
 
+const rtkQueryErrorLogger: Middleware = () => (next) => (action) => {
+  if (isRejectedWithValue(action)) {
+    console.warn('Something went wrong')
+  }
+  return next(action)
+}
+
 const store = configureStore({
   reducer: {
     cities: citiesSlice,
     [cityApiSlice.reducerPath]: cityApiSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(cityApiSlice.middleware),
+    getDefaultMiddleware().concat(cityApiSlice.middleware, rtkQueryErrorLogger),
 })
+
+// Localstorage
 
 if (isLocalStorageAvaliable()) {
   store.subscribe(() => {

@@ -56,6 +56,7 @@ export const Search: FC = () => {
             {isSearchError && (
               <span>
                 {isOpenWeatherErrorType(error) &&
+                  error.data &&
                   `Search error: ${error.data.message}`}
               </span>
             )}

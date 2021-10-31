@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 
-import { useAppDispatch, useAppSelector } from 'store'
+import { isOpenWeatherErrorType, useAppDispatch, useAppSelector } from 'store'
 import { cityApiSlice } from 'store/slices/cityApi.slice'
 import { deleteCityId } from 'store/slices/cities.slice'
 
@@ -11,28 +11,46 @@ export const Cities: FC = () => {
   const dispatch = useAppDispatch()
   const { ids } = useAppSelector((state) => state.cities)
   const queryCitiesIds: string = ids.join(',')
-  const { data } = cityApiSlice.useFetchCitiesByIdsQuery(queryCitiesIds, {
-    ...(!ids.length
-      ? { skip: true }
-      : { pollingInterval: MINUTES_POLLING_INTERVAL }),
-  })
+
+  // TODO: Spread operator looks strange in this place
+  const { data, error } = cityApiSlice.useFetchCitiesByIdsQuery(
+    queryCitiesIds,
+    {
+      ...(!ids.length
+        ? { skip: true }
+        : { pollingInterval: MINUTES_POLLING_INTERVAL }),
+    }
+  )
   const isEmpty = !data || !data.length || !ids.length
 
   return (
     <div>
-      {isEmpty ? (
-        <div>Empty</div>
+      {error ? (
+        <div>
+          {isOpenWeatherErrorType(error) &&
+            error.data &&
+            `Error: ${error.data.message}`}
+          <h1>Error</h1>
+        </div>
       ) : (
         <div>
-          {data &&
-            data.map((city) => (
-              <span key={city.id}>
-                <button onClick={() => dispatch(deleteCityId({ id: city.id }))}>
-                  {city.id}
-                </button>
-                {city.name}
-              </span>
-            ))}
+          {isEmpty ? (
+            <div>Empty</div>
+          ) : (
+            <div>
+              {data &&
+                data.map((city) => (
+                  <span key={city.id}>
+                    <button
+                      onClick={() => dispatch(deleteCityId({ id: city.id }))}
+                    >
+                      {city.id}
+                    </button>
+                    {city.name}
+                  </span>
+                ))}
+            </div>
+          )}
         </div>
       )}
     </div>

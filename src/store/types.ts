@@ -34,10 +34,5 @@ interface OpenWeatherError {
   }
 }
 
-export interface RequestParams {
-  units: 'standard' | 'metric' | 'imperial'
-  appid: string
-}
-
 export const isOpenWeatherErrorType = (error: any): error is OpenWeatherError =>
-  'status' in error
+  Boolean(error && 'status' in error)
