@@ -4,6 +4,7 @@ import { Logo } from 'components/Logo'
 import { Search } from 'components/Search'
 import { Cities } from 'components/Cities'
 import 'styles/index.scss'
+import './App.scss'
 
 const App: FC = () => {
   return (
@@ -28,7 +29,9 @@ const App: FC = () => {
           </p>
         </div>
         <div className="col-4 pull-right pull-bottom">
-          <Search />
+          <div className="App_search">
+            <Search />
+          </div>
         </div>
       </div>
       <div className="row">

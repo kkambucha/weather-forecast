@@ -11,6 +11,8 @@ import { City, isOpenWeatherErrorType, useAppDispatch } from 'store'
 import { addCityId } from 'store/slices/cities.slice'
 import { OutsideClickWatcher } from 'components/OutsideClickWatcher'
 import { cityApiSlice } from 'store/slices/cityApi.slice'
+import search from 'assets/icons/search.svg'
+import './Search.scss'
 
 export const Search: FC = () => {
   const dispatch = useAppDispatch()
@@ -40,16 +42,20 @@ export const Search: FC = () => {
   }, [searchText])
 
   return (
-    <div>
+    <div className="Search">
       <OutsideClickWatcher onClickOutside={() => setIsResultsOpened(false)}>
         <form onSubmit={handleOnSubmit}>
           <input
+            className="Search_input"
             value={searchText}
+            placeholder="Search"
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
               setSearchText(e.target.value)
             }
           />
-          <button>v</button>
+          <button className="Search_button">
+            <img src={search} alt="" />
+          </button>
         </form>
         {isResultsOpened && (
           <div>
