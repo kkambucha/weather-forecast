@@ -8,26 +8,34 @@ import 'styles/index.scss'
 const App: FC = () => {
   return (
     <div className="App">
-      <header className="App_pageContainer">
-        <div className="App_logo">
-          <Logo />
+      <header className="row">
+        <div className="col-1">
+          <div className="App_logo">
+            <Logo />
+          </div>
         </div>
       </header>
-      <section className="App_pageContainer">
-        <h1 className="App_h1">Weather forecast</h1>
-        <p className="App_p">
-          Simple but powerful weather forcasting service based on OpenWeatherMap
-        </p>
-        <Search />
-        <Cities />
-      </section>
-      {/*<p>Regular</p>*/}
-      {/*<p className="medium">Medium</p>*/}
-      {/*<p className="bold">Bold</p>*/}
-      {/*<p className="merriweather">*/}
-      {/*  Simple but powerful weather forcasting service based on OpenWeatherMap*/}
-      {/*  API*/}
-      {/*</p>*/}
+      <div className="row">
+        <div className="col-1">
+          <h1 className="App_h1">Weather forecast</h1>
+        </div>
+      </div>
+      <div className="row">
+        <div className="col-4">
+          <p className="App_p">
+            Simple but powerful weather forcasting service based on
+            OpenWeatherMap
+          </p>
+        </div>
+        <div className="col-4 pull-right pull-bottom">
+          <Search />
+        </div>
+      </div>
+      <div className="row">
+        <div className="col-1">
+          <Cities />
+        </div>
+      </div>
     </div>
   )
 }
