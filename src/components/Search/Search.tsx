@@ -11,7 +11,7 @@ import { City, isOpenWeatherErrorType, useAppDispatch } from 'store'
 import { addCityId } from 'store/slices/cities.slice'
 import { OutsideClickWatcher } from 'components/OutsideClickWatcher'
 import { cityApiSlice } from 'store/slices/cityApi.slice'
-import search from 'assets/icons/search.svg'
+import searchIcon from 'assets/icons/search.svg'
 import './Search.scss'
 
 export const Search: FC = () => {
@@ -53,8 +53,8 @@ export const Search: FC = () => {
               setSearchText(e.target.value)
             }
           />
-          <button className="Search_button">
-            <img src={search} alt="" />
+          <button className="Search_button" title="Search">
+            <img src={searchIcon} alt="" />
           </button>
         </form>
         {isResultsOpened && (

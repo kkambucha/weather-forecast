@@ -2,6 +2,7 @@ import React, { FC } from 'react'
 
 import { City as ICity } from 'store'
 import './City.scss'
+import deleteIcon from 'assets/icons/delete.svg'
 
 interface CityProps {
   city: ICity
@@ -31,7 +32,13 @@ export const City: FC<CityProps> = ({ city, onDelete }) => {
           <div className="City_description">{city.weather[0].description}</div>
         </div>
         <div className="City_actions">
-          <button onClick={() => onDelete(city.id)}>{city.id}</button>
+          <button
+            className="City_button"
+            title="Delete"
+            onClick={() => onDelete(city.id)}
+          >
+            <img src={deleteIcon} alt="delete" />
+          </button>
         </div>
       </div>
       <div className="City_additional">
