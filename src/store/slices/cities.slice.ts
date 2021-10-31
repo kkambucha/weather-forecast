@@ -2,8 +2,10 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import { City } from 'store'
 
+type CityId = number
+
 export interface CitiesState {
-  ids: number[]
+  ids: CityId[]
 }
 
 const initialState: CitiesState = {
@@ -24,7 +26,7 @@ const citiesSlice = createSlice({
     },
     deleteCityId: (
       state: CitiesState,
-      action: PayloadAction<{ id: number }>
+      action: PayloadAction<{ id: CityId }>
     ) => {
       const ids = new Set(state.ids)
       const id = action.payload.id
