@@ -2,13 +2,13 @@
 @import 'styles/breakpoints';
 
 .App {
-  max-width: 1056px; // maximum width 992 + padding: 0 16px
+  max-width: 1024px; // maximum width 992 + padding: 0 16px
   padding: 0 16px;
   margin: 0 auto;
 }
 
-.App_pageContainer {
-  padding: 0 20px;
+.App_header {
+  margin-bottom: 32px;
 }
 
 .App_logo {
