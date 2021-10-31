@@ -24,7 +24,7 @@ const citiesSlice = createSlice({
       ids.add(payload.city.id)
       state.ids = Array.from(ids)
     },
-    deleteCityId: (
+    deleteCityById: (
       state: CitiesState,
       action: PayloadAction<{ id: CityId }>
     ) => {
@@ -43,5 +43,5 @@ const citiesSlice = createSlice({
   },
 })
 
-export const { addCityId, deleteCityId, hydrate } = citiesSlice.actions
+export const { addCityId, deleteCityById, hydrate } = citiesSlice.actions
 export default citiesSlice.reducer

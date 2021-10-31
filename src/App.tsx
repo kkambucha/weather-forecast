@@ -34,11 +34,7 @@ const App: FC = () => {
           </div>
         </div>
       </div>
-      <div className="row">
-        <div className="col-1">
-          <Cities />
-        </div>
-      </div>
+      <Cities />
     </div>
   )
 }

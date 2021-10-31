@@ -1,0 +1,41 @@
+@import 'styles/variables';
+
+.City {
+  padding: 24px 0;
+  background: #fff;
+  border-radius: 24px;
+}
+
+.City_info {
+  padding: 0 32px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.City_additional {
+  padding: 0 32px;
+  border-top: 1px solid $gray-200;
+}
+
+.City_name {
+  font-size: 14px;
+  font-family: $font-family-pt-root;
+  color: $purple-100;
+  letter-spacing: 0.08em;
+}
+
+.City_temp {
+  font-size: 48px;
+  font-family: $font-family-pt-root;
+  color: $gray-500;
+}
+
+.City_description {
+  font-size: 14px;
+  font-family: $font-family-pt-root;
+  color: $gray-400;
+
+  &:first-letter {
+    text-transform:capitalize;
+  }
+}

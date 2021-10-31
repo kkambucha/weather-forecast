@@ -1,11 +1,11 @@
-import React, { FC } from 'react'
+import React, { FC, useCallback } from 'react'
 
 import { isOpenWeatherErrorType, useAppDispatch, useAppSelector } from 'store'
 import { cityApiSlice } from 'store/slices/cityApi.slice'
-import { deleteCityId } from 'store/slices/cities.slice'
+import { deleteCityById } from 'store/slices/cities.slice'
+import { City } from 'components/City'
 
 const MINUTES_POLLING_INTERVAL = 15 * 60 * 1000
-// const MINUTES_POLLING_INTERVAL = 5 * 1000
 
 export const Cities: FC = () => {
   const dispatch = useAppDispatch()
@@ -23,6 +23,13 @@ export const Cities: FC = () => {
   )
   const isEmpty = !data || !data.length || !ids.length
 
+  const handleOnCityDelete = useCallback(
+    (cityId: number) => {
+      dispatch(deleteCityById({ id: cityId }))
+    },
+    [dispatch]
+  )
+
   return (
     <div>
       {error ? (
@@ -33,23 +40,18 @@ export const Cities: FC = () => {
           <h1>Error</h1>
         </div>
       ) : (
-        <div>
+        <div className="row">
           {isEmpty ? (
             <div>Empty</div>
           ) : (
-            <div>
+            <>
               {data &&
                 data.map((city) => (
-                  <span key={city.id}>
-                    <button
-                      onClick={() => dispatch(deleteCityId({ id: city.id }))}
-                    >
-                      {city.id}
-                    </button>
-                    {city.name}
-                  </span>
+                  <div className="col-4" key={city.id}>
+                    <City city={city} onDelete={handleOnCityDelete} />
+                  </div>
                 ))}
-            </div>
+            </>
           )}
         </div>
       )}
