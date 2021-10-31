@@ -52,12 +52,7 @@ export const Search: FC = () => {
 
   return (
     <div className="Search">
-      <OutsideClickWatcher
-        onClickOutside={() => {
-          console.log('click outside')
-        }}
-        // onClickOutside={() => setIsResultsOpened(false)}
-      >
+      <OutsideClickWatcher onClickOutside={() => setIsResultsOpened(false)}>
         <form onSubmit={handleOnSubmit}>
           <input
             className="Search_input"

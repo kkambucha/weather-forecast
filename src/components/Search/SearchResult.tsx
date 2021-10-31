@@ -2,6 +2,7 @@ import React, { FC } from 'react'
 
 import { City, isOpenWeatherErrorType } from 'store'
 import addIcon from 'assets/icons/add.svg'
+import spinnerIcon from 'assets/icons/spinner.svg'
 import './SearchResult.scss'
 
 interface SearchResultProps {
@@ -35,7 +36,13 @@ export const SearchResult: FC<SearchResultProps> = ({
         )}
         {isEmpty && <span>No {cityName} city found</span>}
         {isFetching ? (
-          <span>Loading...</span>
+          <div className="SearchResult_loading">
+            <img
+              className="SearchResult_loadingIcon"
+              src={spinnerIcon}
+              alt=""
+            />
+          </div>
         ) : (
           <>
             {!isError && (
