@@ -3,8 +3,8 @@ import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 
 import App from './App'
-import { store } from 'store'
 import reportWebVitals from './reportWebVitals'
+import { store } from 'store'
 
 render(
   <React.StrictMode>

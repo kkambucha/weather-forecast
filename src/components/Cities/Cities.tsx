@@ -5,6 +5,7 @@ import { cityApiSlice } from 'store/slices/cityApi.slice'
 import { deleteCityId } from 'store/slices/cities.slice'
 
 const MINUTES_POLLING_INTERVAL = 15 * 60 * 1000
+// const MINUTES_POLLING_INTERVAL = 5 * 1000
 
 export const Cities: FC = () => {
   const dispatch = useAppDispatch()

@@ -32,21 +32,11 @@ const citiesSlice = createSlice({
 
       state.ids = Array.from(ids)
     },
+    hydrate: (state, action) => {
+      return action.payload
+    },
   },
-  // extraReducers: (builder) => {
-  //   builder
-  //     .addCase(fetchCities.pending, (state, action) => {
-  //       console.log(state, action, 'cities pending')
-  //     })
-  //     .addCase(fetchCities.fulfilled, (state, { payload }) => {
-  //       console.log('payload', payload)
-  //       console.log('fetch cities fulfilled')
-  //     })
-  //     .addCase(fetchCities.rejected, () => {
-  //       console.log('fetch cities rejected')
-  //     })
-  // },
 })
 
-export const { addCityId, deleteCityId } = citiesSlice.actions
+export const { addCityId, deleteCityId, hydrate } = citiesSlice.actions
 export default citiesSlice.reducer
