@@ -8,7 +8,7 @@
 }
 
 .City_info {
-  padding: 0 32px 32px;
+  padding: 0 24px 34px 32px;
   display: flex;
   justify-content: space-between;
 }
@@ -24,12 +24,15 @@
   font-family: $font-family-pt-root;
   color: $purple-100;
   letter-spacing: 0.08em;
+  line-height: 20px;
+  margin-bottom: 13px;
 }
 
 .City_temp {
   font-size: 48px;
   font-family: $font-family-pt-root;
   color: $gray-500;
+  margin: 3px 0;
 }
 
 .City_description {
@@ -45,6 +48,7 @@
 .City_icon {
   width: 48px;
   height: 48px;
+  margin: 0 16px;
 }
 
 .City_button {
