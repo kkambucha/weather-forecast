@@ -19,9 +19,12 @@ const citiesSlice = createSlice({
       ids.add(payload.id)
       state.ids = Array.from(ids)
     },
-    deleteCityId: (state: CitiesState, action: PayloadAction<number>) => {
+    deleteCityId: (
+      state: CitiesState,
+      action: PayloadAction<{ id: number }>
+    ) => {
       const ids = new Set(state.ids)
-      const id = action.payload
+      const id = action.payload.id
 
       if (ids.has(id)) {
         ids.delete(id)
