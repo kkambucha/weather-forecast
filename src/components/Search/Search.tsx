@@ -40,7 +40,7 @@ export const Search: FC = () => {
   )
 
   const handleOnSelect = useCallback(
-    (id) => {
+    (id: number) => {
       dispatch(addCityId({ id }))
     },
     [dispatch]
@@ -52,7 +52,12 @@ export const Search: FC = () => {
 
   return (
     <div className="Search">
-      <OutsideClickWatcher onClickOutside={() => setIsResultsOpened(false)}>
+      <OutsideClickWatcher
+        onClickOutside={() => {
+          console.log('click outside')
+        }}
+        // onClickOutside={() => setIsResultsOpened(false)}
+      >
         <form onSubmit={handleOnSubmit}>
           <input
             className="Search_input"

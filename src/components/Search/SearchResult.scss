@@ -1,0 +1,79 @@
+@import 'styles/variables';
+
+.SearchResult {
+  position: relative;
+}
+
+.SearchResult_container {
+  position: absolute;
+  width: 100%;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: $dropdown-shadow;
+  top: 8px;
+  overflow: hidden;
+}
+
+.SearchResult_list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.SearchResult_listItem {
+  &:last-child{
+    .SearchResult_buttonContent:after {
+      display: none;
+    }
+  }
+}
+
+.SearchResult_button {
+  background: none;
+  border: 0;
+  cursor: pointer;
+  display: flex;
+  width: 100%;
+  padding: 20px 24px 21px;
+
+  &:hover {
+    background: $gray-100;
+  }
+}
+
+.SearchResult_buttonContent {
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &:after {
+    content: '';
+    display: block;
+    width: 100%;
+    position: absolute;
+    bottom: -21px;
+    height: 1px;
+    background: $gray-200;
+  }
+}
+
+.SearchResult_description {
+  text-align: left;
+}
+
+.SearchResult_cityName {
+  font-family: $font-family-pt-root;
+  font-weight: $font-weight-bold;
+  color: $gray-500;
+  font-size: 16px;
+  line-height: 24px;
+  display: block;
+}
+
+.SearchResult_coords {
+  color: $gray-400;
+  font-size: 14px;
+  line-height: 20px;
+}
