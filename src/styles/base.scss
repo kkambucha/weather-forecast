@@ -1,4 +1,5 @@
 @import './variables';
+@import './breakpoints';
 
 body {
   background-color: $gray-200;
@@ -9,51 +10,51 @@ body {
 }
 
 .App {
-  text-align: center;
+  max-width: 1032px; // maximum width 992 + padding: 0 20px
+  margin: 0 auto;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.App_pageContainer {
+  padding: 0 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.App_logo {
+  padding: 24px 0;
 }
 
-.App-header {
-  min-height: 400px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.merriweather {
+.App_h1 {
   font-family: $font-family-merriweather;
+  font-size: 28px;
+  color: $gray-500;
+  margin: 0;
+
+  @include g-responsive-after(sm) {
+    font-size: 36px;
+    line-height: 36px;
+    margin: 16px 0;
+  }
 }
 
-.medium {
-  font-weight: 500;
+.App_p {
+  font-family: $font-family-merriweather;
+  color: $gray-400;
+  font-size: 14px;
+  line-height: 20px;
+
+  @include g-responsive-after(sm) {
+    font-size: 16px;
+    line-height: 24px;
+  }
 }
 
-.bold {
-  font-weight: 500;
-}
+//.merriweather {
+//  font-family: $font-family-merriweather;
+//}
+//
+//.medium {
+//  font-weight: 500;
+//}
+//
+//.bold {
+//  font-weight: 500;
+//}

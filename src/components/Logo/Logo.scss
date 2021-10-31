@@ -1,0 +1,36 @@
+@import 'styles/variables';
+
+.Logo {
+  width: 100%;
+}
+
+.Logo_container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  justify-content: center;
+
+  &:before {
+    content: '';
+    display: flex;
+    height: 1px;
+    width: 100%;
+    position: absolute;
+    top: 24px;
+    background: $gray-300;
+  }
+}
+
+.Logo_imageContainer {
+  width: 80px;
+  display: flex;
+  justify-content: center;
+  background: $gray-200;
+  position: relative;
+}
+
+.Logo_image {
+  width: 48px;
+  height: 48px;
+}
