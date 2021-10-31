@@ -1,7 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { City } from 'store'
-
 type CityId = number
 
 export interface CitiesState {
@@ -18,10 +16,10 @@ const citiesSlice = createSlice({
   reducers: {
     addCityId: (
       state: CitiesState,
-      { payload }: PayloadAction<{ city: City }>
+      { payload }: PayloadAction<{ id: CityId }>
     ) => {
       const ids = new Set(state.ids)
-      ids.add(payload.city.id)
+      ids.add(payload.id)
       state.ids = Array.from(ids)
     },
     deleteCityId: (
