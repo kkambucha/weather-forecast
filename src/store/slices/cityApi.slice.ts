@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
-import { City, OpenWeatherResponse } from 'api/types'
+import { City, OpenWeatherResponse } from 'store/types'
 
 export const cityApiSlice = createApi({
   reducerPath: 'cityApi',
@@ -20,6 +20,17 @@ export const cityApiSlice = createApi({
       }),
       transformResponse: (response: OpenWeatherResponse): City[] =>
         response.list,
+    }),
+    fetchCitiesByIds: build.query({
+      query: (ids) => ({
+        url: 'group',
+        method: 'GET',
+        params: {
+          id: ids,
+          appid: `${process.env.REACT_APP_OPEN_WEATHER_API_KEY}`,
+          units: 'metric',
+        },
+      }),
     }),
   }),
 })

@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 
-import { City } from 'api/types'
+import { City } from 'store/types'
 import { useAppSelector } from 'store'
 
 export const Cities: FC = () => {

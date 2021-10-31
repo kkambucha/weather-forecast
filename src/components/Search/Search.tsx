@@ -7,8 +7,7 @@ import React, {
   useEffect,
 } from 'react'
 
-import { City, isOpenWeatherErrorType } from 'api/types'
-import { useAppDispatch } from 'store'
+import { City, isOpenWeatherErrorType, useAppDispatch } from 'store'
 import { addCity } from 'store/slices/cities.slice'
 import { OutsideClickWatcher } from 'components/OutsideClickWatcher'
 import { cityApiSlice } from 'store/slices/cityApi.slice'
@@ -64,18 +63,22 @@ export const Search: FC = () => {
             {isFetching ? (
               <span>Loading...</span>
             ) : (
-              <ul>
-                {result &&
-                  result.map((city: City, index: number) => (
-                    <button
-                      type="button"
-                      key={index}
-                      onClick={() => dispatch(addCity(city))}
-                    >
-                      {city.name}
-                    </button>
-                  ))}
-              </ul>
+              <>
+                {!isSearchError && (
+                  <ul>
+                    {result &&
+                      result.map((city: City, index: number) => (
+                        <button
+                          type="button"
+                          key={index}
+                          onClick={() => dispatch(addCity(city))}
+                        >
+                          {city.name}
+                        </button>
+                      ))}
+                  </ul>
+                )}
+              </>
             )}
           </div>
         )}
