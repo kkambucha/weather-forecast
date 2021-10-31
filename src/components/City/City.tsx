@@ -15,7 +15,6 @@ function getOpenWeatherIconURL(icon: string): string {
 }
 
 export const City: FC<CityProps> = ({ city, onDelete }) => {
-  console.log('city', city)
   return (
     <div className="City" key={city.id}>
       <div className="City_info">
