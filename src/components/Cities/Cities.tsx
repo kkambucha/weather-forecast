@@ -2,7 +2,7 @@ import React, { FC, useCallback } from 'react'
 
 import { isOpenWeatherErrorType, useAppDispatch, useAppSelector } from 'store'
 import { cityApiSlice } from 'store/slices/cityApi.slice'
-import { deleteCityById } from 'store/slices/cities.slice'
+import { deleteCityId } from 'store/slices/cities.slice'
 import { City } from 'components/City'
 
 const MINUTES_POLLING_INTERVAL = 15 * 60 * 1000
@@ -25,7 +25,7 @@ export const Cities: FC = () => {
 
   const handleOnCityDelete = useCallback(
     (cityId: number) => {
-      dispatch(deleteCityById({ id: cityId }))
+      dispatch(deleteCityId({ id: cityId }))
     },
     [dispatch]
   )
