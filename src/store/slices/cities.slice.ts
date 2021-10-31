@@ -1,16 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import _ from 'lodash'
 
-import { City, ApiStatus } from 'store'
+import { City } from 'store'
 
 interface CitiesState {
   list: City[]
-  status: ApiStatus
 }
 
 const initialState: CitiesState = {
   list: [],
-  status: 'idle',
 }
 
 const citiesSlice = createSlice({

@@ -2,33 +2,38 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 import { City, OpenWeatherResponse } from 'store/types'
 
+const OPEN_WEATHER_API_URL = 'https://api.openweathermap.org/data/2.5'
+
+const commonApiParams = {
+  appid: `${process.env.REACT_APP_OPEN_WEATHER_API_KEY}`,
+  units: 'metric',
+}
+
 export const cityApiSlice = createApi({
   reducerPath: 'cityApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://api.openweathermap.org/data/2.5',
+    baseUrl: OPEN_WEATHER_API_URL,
   }),
   endpoints: (build) => ({
     fetchCitiesByName: build.query({
-      query: (cityName) => ({
+      query: (cityName: string) => ({
         url: '/find',
         method: 'GET',
         params: {
           q: cityName,
-          appid: `${process.env.REACT_APP_OPEN_WEATHER_API_KEY}`,
-          units: 'metric',
+          ...commonApiParams,
         },
       }),
       transformResponse: (response: OpenWeatherResponse): City[] =>
         response.list,
     }),
     fetchCitiesByIds: build.query({
-      query: (ids) => ({
+      query: (ids: string[]) => ({
         url: 'group',
         method: 'GET',
         params: {
           id: ids,
-          appid: `${process.env.REACT_APP_OPEN_WEATHER_API_KEY}`,
-          units: 'metric',
+          ...commonApiParams,
         },
       }),
     }),

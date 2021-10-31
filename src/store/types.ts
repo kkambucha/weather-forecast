@@ -1,5 +1,3 @@
-export type ApiStatus = 'idle' | 'pending' | 'rejected'
-
 export interface City {
   id: number
   name: string
