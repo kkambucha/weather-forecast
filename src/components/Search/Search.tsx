@@ -3,51 +3,46 @@ import React, {
   ChangeEvent,
   FormEvent,
   useState,
-  useRef,
   useCallback,
   useEffect,
 } from 'react'
-import _ from 'lodash'
 
-import { City } from 'api/types'
-import { useAppSelector, useAppDispatch } from 'store'
-import { fetchCities, clearResult } from 'store/slices/search.slice'
+import { City, isOpenWeatherErrorType } from 'api/types'
+import { useAppDispatch } from 'store'
 import { addCity } from 'store/slices/cities.slice'
 import { OutsideClickWatcher } from 'components/OutsideClickWatcher'
-
-const FETCH_DEBOUNCE_TIME = 400
+import { cityApiSlice } from 'store/slices/cityApi.slice'
 
 export const Search: FC = () => {
   const dispatch = useAppDispatch()
   const [searchText, setSearchText] = useState('')
-  const { result, status } = useAppSelector((state) => state.search)
-
-  // useRef for creating function just once
-  const dispatchFetchCitiesDebounced = useRef(
-    _.debounce((cityName: string) => {
-      if (cityName) {
-        dispatch(fetchCities(cityName))
-      }
-    }, FETCH_DEBOUNCE_TIME)
-  )
+  const [isResultsOpened, setIsResultsOpened] = useState(false)
+  const [
+    fetchCities,
+    { data: result, originalArgs: lastCityName, error, isFetching, isSuccess },
+  ] = cityApiSlice.useLazyFetchCitiesByNameQuery()
+  const isEmptySearch =
+    !isFetching && isSuccess && lastCityName && result && !result.length
+  const isSearchError = Boolean(error)
 
   const handleOnSubmit = useCallback(
     (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault()
-      dispatchFetchCitiesDebounced.current(searchText)
+      if (searchText) {
+        fetchCities(searchText)
+        setIsResultsOpened(true)
+      }
     },
-    [searchText]
+    [searchText, fetchCities]
   )
 
-  const handleClearResult = () => {
-    dispatch(clearResult())
-  }
-
-  useEffect(handleClearResult, [searchText, dispatch])
+  useEffect(() => {
+    setIsResultsOpened(false)
+  }, [searchText])
 
   return (
     <div>
-      <OutsideClickWatcher onClickOutside={handleClearResult}>
+      <OutsideClickWatcher onClickOutside={() => setIsResultsOpened(false)}>
         <form onSubmit={handleOnSubmit}>
           <input
             value={searchText}
@@ -57,19 +52,32 @@ export const Search: FC = () => {
           />
           <button>v</button>
         </form>
-        {status === 'pending' && <span>loading...</span>}
-        {Boolean(result.length) && (
-          <ul>
-            {result.map((city: City, index: number) => (
-              <button
-                type="button"
-                key={index}
-                onClick={() => dispatch(addCity(city))}
-              >
-                {city.name}
-              </button>
-            ))}
-          </ul>
+        {isResultsOpened && (
+          <div>
+            {isSearchError && (
+              <span>
+                {isOpenWeatherErrorType(error) &&
+                  `Search error: ${error.data.message}`}
+              </span>
+            )}
+            {isEmptySearch && <span>No {lastCityName} city found</span>}
+            {isFetching ? (
+              <span>Loading...</span>
+            ) : (
+              <ul>
+                {result &&
+                  result.map((city: City, index: number) => (
+                    <button
+                      type="button"
+                      key={index}
+                      onClick={() => dispatch(addCity(city))}
+                    >
+                      {city.name}
+                    </button>
+                  ))}
+              </ul>
+            )}
+          </div>
         )}
       </OutsideClickWatcher>
     </div>

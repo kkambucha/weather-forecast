@@ -1,13 +1,16 @@
 import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit'
 
 import citiesSlice from './slices/cities.slice'
-import searchSlice from './slices/search.slice'
+
+import { cityApiSlice } from './slices/cityApi.slice'
 
 const store = configureStore({
   reducer: {
     cities: citiesSlice,
-    search: searchSlice,
+    [cityApiSlice.reducerPath]: cityApiSlice.reducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(cityApiSlice.middleware),
 })
 
 export type AppDispatch = typeof store.dispatch

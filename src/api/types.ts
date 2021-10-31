@@ -28,7 +28,18 @@ export interface OpenWeatherResponse {
   list: City[]
 }
 
+interface OpenWeatherError {
+  status: number
+  data: {
+    cod: string
+    message: string
+  }
+}
+
 export interface RequestParams {
   units: 'standard' | 'metric' | 'imperial'
   appid: string
 }
+
+export const isOpenWeatherErrorType = (error: any): error is OpenWeatherError =>
+  'status' in error

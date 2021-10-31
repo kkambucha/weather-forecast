@@ -1,10 +1,10 @@
 import React, { FC } from 'react'
 
 import { City } from 'api/types'
-import { useAppSelector, useAppDispatch } from 'store'
+import { useAppSelector } from 'store'
 
 export const Cities: FC = () => {
-  const { list, status } = useAppSelector((state) => state.cities)
+  const { list } = useAppSelector((state) => state.cities)
   return (
     <div>
       {list.map((city: City, index: number) => (
