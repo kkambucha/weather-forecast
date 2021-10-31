@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import { City } from 'store'
 
-interface CitiesState {
+export interface CitiesState {
   ids: number[]
 }
 

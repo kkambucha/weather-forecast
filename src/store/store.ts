@@ -1,7 +1,7 @@
 import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit'
 
 import { isLocalStorageAvaliable } from 'libs/localstorage'
-import citiesSlice, { hydrate } from './slices/cities.slice'
+import citiesSlice, { hydrate, CitiesState } from './slices/cities.slice'
 import { cityApiSlice } from './slices/cityApi.slice'
 
 export const LS_KEY_NAME = 'weather-forecast'
@@ -20,7 +20,7 @@ if (isLocalStorageAvaliable()) {
     localStorage.setItem(LS_KEY_NAME, JSON.stringify(store.getState()))
   })
 
-  const getCitiesFromLocalStorage = () => {
+  const getCitiesFromLocalStorage = (): CitiesState | undefined => {
     try {
       const persistedState = localStorage.getItem(LS_KEY_NAME)
       if (persistedState) {

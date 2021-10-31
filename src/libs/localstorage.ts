@@ -1,4 +1,4 @@
-export const isLocalStorageAvaliable = () => {
+export const isLocalStorageAvaliable = (): boolean => {
   const test = 'test'
   try {
     localStorage.setItem(test, test)
