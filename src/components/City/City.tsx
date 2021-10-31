@@ -22,16 +22,13 @@ export const City: FC<CityProps> = ({ city, onDelete }) => {
           <div className="City_name">{city.name.toUpperCase()}</div>
           <div className="City_temp">
             {Math.trunc(city.main.temp)}°C
-            <div className="City_icon">
-              <img
-                src={getOpenWeatherIconURL(city.weather[0].icon)}
-                alt={city.weather[0].description}
-              />
-            </div>
-            <div className="City_description">
-              {city.weather[0].description}
-            </div>
+            <img
+              className="City_icon"
+              src={getOpenWeatherIconURL(city.weather[0].icon)}
+              alt={city.weather[0].description}
+            />
           </div>
+          <div className="City_description">{city.weather[0].description}</div>
         </div>
         <div className="City_actions">
           <button onClick={() => onDelete(city.id)}>{city.id}</button>
