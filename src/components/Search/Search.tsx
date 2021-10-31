@@ -72,7 +72,7 @@ export const Search: FC = () => {
                         <button
                           type="button"
                           key={index}
-                          onClick={() => dispatch(addCityId(city))}
+                          onClick={() => dispatch(addCityId({ city }))}
                         >
                           {city.name}
                         </button>

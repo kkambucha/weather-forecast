@@ -14,9 +14,12 @@ const citiesSlice = createSlice({
   name: 'cities',
   initialState,
   reducers: {
-    addCityId: (state: CitiesState, { payload }: PayloadAction<City>) => {
+    addCityId: (
+      state: CitiesState,
+      { payload }: PayloadAction<{ city: City }>
+    ) => {
       const ids = new Set(state.ids)
-      ids.add(payload.id)
+      ids.add(payload.city.id)
       state.ids = Array.from(ids)
     },
     deleteCityId: (
@@ -32,7 +35,7 @@ const citiesSlice = createSlice({
 
       state.ids = Array.from(ids)
     },
-    hydrate: (state, action) => {
+    hydrate: (state: CitiesState, action: PayloadAction<CitiesState>) => {
       return action.payload
     },
   },
