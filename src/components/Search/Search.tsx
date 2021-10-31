@@ -8,7 +8,7 @@ import React, {
 } from 'react'
 
 import { City, isOpenWeatherErrorType, useAppDispatch } from 'store'
-import { addCity } from 'store/slices/cities.slice'
+import { addCityId } from 'store/slices/cities.slice'
 import { OutsideClickWatcher } from 'components/OutsideClickWatcher'
 import { cityApiSlice } from 'store/slices/cityApi.slice'
 
@@ -71,7 +71,7 @@ export const Search: FC = () => {
                         <button
                           type="button"
                           key={index}
-                          onClick={() => dispatch(addCity(city))}
+                          onClick={() => dispatch(addCityId(city))}
                         >
                           {city.name}
                         </button>

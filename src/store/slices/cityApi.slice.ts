@@ -28,7 +28,7 @@ export const cityApiSlice = createApi({
         response.list,
     }),
     fetchCitiesByIds: build.query({
-      query: (ids: string[]) => ({
+      query: (ids: string) => ({
         url: 'group',
         method: 'GET',
         params: {
@@ -36,6 +36,8 @@ export const cityApiSlice = createApi({
           ...commonApiParams,
         },
       }),
+      transformResponse: (response: OpenWeatherResponse): City[] =>
+        response.list,
     }),
   }),
 })

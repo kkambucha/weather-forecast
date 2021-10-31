@@ -1,27 +1,33 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import _ from 'lodash'
 
 import { City } from 'store'
 
 interface CitiesState {
-  list: City[]
+  ids: number[]
 }
 
 const initialState: CitiesState = {
-  list: [],
+  ids: [],
 }
 
 const citiesSlice = createSlice({
   name: 'cities',
   initialState,
   reducers: {
-    addCity: (state: CitiesState, { payload }: PayloadAction<City>) => {
-      if (!_.some(state.list, payload)) {
-        state.list.push(payload)
-      }
+    addCityId: (state: CitiesState, { payload }: PayloadAction<City>) => {
+      const ids = new Set(state.ids)
+      ids.add(payload.id)
+      state.ids = Array.from(ids)
     },
-    deleteCity: (state: CitiesState, action: PayloadAction<number>) => {
-      _.remove(state.list, (city: City): boolean => city.id === action.payload)
+    deleteCityId: (state: CitiesState, action: PayloadAction<number>) => {
+      const ids = new Set(state.ids)
+      const id = action.payload
+
+      if (ids.has(id)) {
+        ids.delete(id)
+      }
+
+      state.ids = Array.from(ids)
     },
   },
   // extraReducers: (builder) => {
@@ -39,5 +45,5 @@ const citiesSlice = createSlice({
   // },
 })
 
-export const { addCity, deleteCity } = citiesSlice.actions
+export const { addCityId, deleteCityId } = citiesSlice.actions
 export default citiesSlice.reducer
