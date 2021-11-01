@@ -29,7 +29,7 @@ export const Cities: FC = () => {
   )
 
   return (
-    <div>
+    <div className="Cities">
       {error ? (
         <div className="col-1">
           <div className="Cities_empty">
