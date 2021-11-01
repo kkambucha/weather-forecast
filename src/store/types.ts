@@ -38,7 +38,7 @@ export const isOpenWeatherErrorType = (
   error: unknown
 ): error is OpenWeatherError => {
   if (typeof error === 'object') {
-    Boolean(error && 'status' in error)
+    return Boolean(error && 'status' in error)
   }
   return false
 }
