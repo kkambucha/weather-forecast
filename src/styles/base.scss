@@ -2,20 +2,9 @@
 
 body {
   background-color: $gray-200;
+  color: $gray-500;
   margin: 0;
   font-family: $font-family-pt-root, 'Roboto', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-//.merriweather {
-//  font-family: $font-family-merriweather;
-//}
-//
-//.medium {
-//  font-weight: 500;
-//}
-//
-//.bold {
-//  font-weight: 500;
-//}
