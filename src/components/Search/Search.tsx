@@ -58,6 +58,7 @@ export const Search: FC = () => {
             className="Search_input"
             value={searchText}
             placeholder="Search"
+            tabIndex={0}
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
               setSearchText(e.target.value)
             }

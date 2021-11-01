@@ -39,6 +39,7 @@ export const City: FC<CityProps> = ({ city, onDelete }) => {
           <button
             className="City_button"
             title="Delete"
+            tabIndex={0}
             onClick={() => onDelete(city.id)}
           >
             <img src={deleteIcon} alt="delete" />
