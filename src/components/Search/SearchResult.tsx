@@ -29,9 +29,12 @@ export const SearchResult: FC<SearchResultProps> = ({
       <div className="SearchResult_container">
         {isError && (
           <span className="SearchResult_text">
-            {isOpenWeatherErrorType(error) &&
-              error.data &&
-              `Search error: ${error.data.message}`}
+            <span className="SearchResult_textTitle">Something went wrong</span>
+            <span className="SearchResult_textDescription">
+              {isOpenWeatherErrorType(error) &&
+                error.data &&
+                `${error.data.message}`}
+            </span>
           </span>
         )}
         {isEmpty && (
