@@ -12,6 +12,10 @@ In the project directory, you can run:
 
 ### `yarn start`
 
+Для работы приложения необходим API-ключ openweather. Его можно получить зарегистрировавшись на [https://openweathermap.org/](https://openweathermap.org/).
+Этот ключ прописывается в параметр
+`REACT_APP_OPEN_WEATHER_API_KEY=` в файле `/.env` который создается по подобию `/.env.example`
+
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
@@ -47,4 +51,3 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 - Тестов недостаточно. Нужно дописать тесты на логику отображения результатов поиска / прелоадера / пустых результатов, навигацию клавиатурой и тп
 - Возможно, стоит и редюсеры уже тестировать, хотя пока что какой-то сложной логики в них вроде нет
 - Нужно проработать механизм работы с иконками. С самими svg-файлами и сделать компонент Icon который по переданому пропсу name будет брать подходящую иконку
-
