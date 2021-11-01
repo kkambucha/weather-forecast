@@ -1,4 +1,4 @@
-import { Dispatch, useCallback, useEffect, useRef, useState } from 'react'
+import { Dispatch, useCallback, useEffect, useRef, useState, Ref } from 'react'
 
 export const useKeyboardNavigation = (
   size: number
@@ -26,7 +26,7 @@ export const useKeyboardNavigation = (
   return [activeCursor, setActiveCursor]
 }
 
-export const useFocus = (isActive: boolean) => {
+export const useFocus = (isActive: boolean): Ref<HTMLButtonElement> => {
   const itemRef = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {

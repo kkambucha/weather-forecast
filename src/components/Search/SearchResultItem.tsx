@@ -1,4 +1,5 @@
 import React, { FC } from 'react'
+import cn from 'classnames'
 
 import { City } from 'store'
 import { useFocus } from './hooks'
@@ -8,6 +9,7 @@ import addIcon from 'assets/icons/add.svg'
 interface SearchResultItemProps {
   index: number
   city: City
+  disabled: boolean
   activeCursor: number
   onSelect: (cityId: number) => void
 }
@@ -15,6 +17,7 @@ interface SearchResultItemProps {
 export const SearchResultItem: FC<SearchResultItemProps> = ({
   index,
   city,
+  disabled,
   activeCursor,
   onSelect,
 }) => {
@@ -24,11 +27,16 @@ export const SearchResultItem: FC<SearchResultItemProps> = ({
       <button
         type="button"
         className="SearchResultItem_button"
+        disabled={disabled}
         onClick={() => onSelect(city.id)}
         ref={myRef}
       >
         <span className="SearchResultItem_buttonContent">
-          <span className="SearchResultItem_description">
+          <span
+            className={cn('SearchResultItem_description', {
+              disabled: disabled,
+            })}
+          >
             <span className="SearchResultItem_cityName">
               {city.name}, {city.sys.country}
             </span>
@@ -36,7 +44,7 @@ export const SearchResultItem: FC<SearchResultItemProps> = ({
               {city.coord.lat} {city.coord.lon}
             </span>
           </span>
-          <img src={addIcon} alt="Add" />
+          {!disabled && <img src={addIcon} alt="Add" />}
         </span>
       </button>
     </li>

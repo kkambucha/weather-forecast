@@ -7,7 +7,7 @@ import React, {
   useEffect,
 } from 'react'
 
-import { useAppDispatch } from 'store'
+import { useAppDispatch, useAppSelector } from 'store'
 import { addCityId } from 'store/slices/cities.slice'
 import { cityApiSlice } from 'store/slices/cityApi.slice'
 import { OutsideClickWatcher } from 'components/OutsideClickWatcher'
@@ -27,6 +27,7 @@ export const Search: FC = () => {
     !isFetching && isSuccess && lastCityName && result && !result.length
   )
   const isSearchError = Boolean(error)
+  const addedCitiesIds = useAppSelector((state) => state.cities)
 
   const handleOnSubmit = useCallback(
     (e: FormEvent<HTMLFormElement>) => {
@@ -71,6 +72,7 @@ export const Search: FC = () => {
           <SearchResult
             error={error}
             cityName={lastCityName}
+            added={addedCitiesIds}
             isError={isSearchError}
             isFetching={isFetching}
             isEmpty={isEmptySearch}

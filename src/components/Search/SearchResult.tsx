@@ -9,6 +9,7 @@ import './SearchResult.scss'
 interface SearchResultProps {
   error: unknown
   cityName: string | undefined
+  added: number[]
   isError: boolean
   isFetching: boolean
   isEmpty: boolean
@@ -19,6 +20,7 @@ interface SearchResultProps {
 export const SearchResult: FC<SearchResultProps> = ({
   error,
   cityName,
+  added,
   isError,
   isFetching,
   isEmpty,
@@ -68,6 +70,7 @@ export const SearchResult: FC<SearchResultProps> = ({
                         key={city.id}
                         city={city}
                         index={index}
+                        disabled={added.includes(city.id)}
                         activeCursor={activeCursor}
                         onSelect={onSelect}
                       />

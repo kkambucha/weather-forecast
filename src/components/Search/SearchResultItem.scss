@@ -16,7 +16,7 @@
   width: 100%;
   padding: 20px 24px 21px;
 
-  &:hover,
+  &:not(:disabled):hover,
   &:focus {
     background: $gray-100;
     outline: none;
@@ -43,6 +43,10 @@
 
 .SearchResultItem_description {
   text-align: left;
+
+  &.disabled {
+    opacity: .5;
+  }
 }
 
 .SearchResultItem_cityName {
