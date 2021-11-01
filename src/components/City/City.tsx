@@ -24,7 +24,7 @@ export const City: FC<CityProps> = ({ city, onDelete }) => {
     <div className="City" key={city.id}>
       <div className="City_info">
         <div className="City_weather">
-          <div className="City_name">{city.name.toUpperCase()}</div>
+          <div className="City_name">{city.name}</div>
           <div className="City_temp">
             {Math.trunc(city.main.temp)}°C
             <img
