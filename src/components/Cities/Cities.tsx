@@ -34,9 +34,9 @@ export const Cities: FC = () => {
         <div className="col-1">
           <div className="Cities_empty">
             <div className="Cities_emptyTitle">Something went wrong</div>
-            {isOpenWeatherErrorType(error) &&
-              error.data &&
-              `${error.data.message}`}
+            {isOpenWeatherErrorType(error) && error.data
+              ? `${error.data.message}`
+              : 'Try to check connection'}
           </div>
         </div>
       ) : (

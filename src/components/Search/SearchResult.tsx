@@ -31,9 +31,9 @@ export const SearchResult: FC<SearchResultProps> = ({
           <span className="SearchResult_text">
             <span className="SearchResult_textTitle">Something went wrong</span>
             <span className="SearchResult_textDescription">
-              {isOpenWeatherErrorType(error) &&
-                error.data &&
-                `${error.data.message}`}
+              {isOpenWeatherErrorType(error) && error.data
+                ? `${error.data.message}`
+                : 'Try to check connection'}
             </span>
           </span>
         )}
