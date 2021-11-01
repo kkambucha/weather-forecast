@@ -28,13 +28,22 @@ export const SearchResult: FC<SearchResultProps> = ({
     <div className="SearchResult">
       <div className="SearchResult_container">
         {isError && (
-          <span>
+          <span className="SearchResult_text">
             {isOpenWeatherErrorType(error) &&
               error.data &&
               `Search error: ${error.data.message}`}
           </span>
         )}
-        {isEmpty && <span>No {cityName} city found</span>}
+        {isEmpty && (
+          <span className="SearchResult_text">
+            <span className="SearchResult_textTitle">
+              City called &laquo;{cityName}&raquo; was not found
+            </span>
+            <span className="SearchResult_textDescription">
+              Try different city name
+            </span>
+          </span>
+        )}
         {isFetching ? (
           <div className="SearchResult_spinner">
             <img

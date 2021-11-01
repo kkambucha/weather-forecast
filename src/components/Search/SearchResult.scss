@@ -99,3 +99,22 @@
     transform:rotate(360deg);
   }
 }
+
+.SearchResult_text {
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.SearchResult_textTitle {
+  color: $gray-500;
+  font-family: $font-family-pt-root;
+  font-weight: $font-weight-bold;
+  line-height: 24px;
+}
+
+.SearchResult_textDescription {
+  color: $gray-400;
+  line-height: 20px;
+}
