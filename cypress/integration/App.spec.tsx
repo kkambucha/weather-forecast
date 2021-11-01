@@ -1,5 +1,6 @@
 /// <reference types="cypress" />
 // @ts-check
+export {}
 describe('basic integration test', () => {
   beforeEach(() => {
     cy.visit('/')
