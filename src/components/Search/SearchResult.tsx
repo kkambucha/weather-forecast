@@ -36,9 +36,9 @@ export const SearchResult: FC<SearchResultProps> = ({
         )}
         {isEmpty && <span>No {cityName} city found</span>}
         {isFetching ? (
-          <div className="SearchResult_loading">
+          <div className="SearchResult_spinner">
             <img
-              className="SearchResult_loadingIcon"
+              className="SearchResult_spinnerIcon"
               src={spinnerIcon}
               alt=""
             />
