@@ -1,14 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-type CityId = number
+export type CitiesState = number[]
 
-export interface CitiesState {
-  ids: CityId[]
-}
-
-const initialState: CitiesState = {
-  ids: [],
-}
+const initialState: CitiesState = []
 
 const citiesSlice = createSlice({
   name: 'cities',
@@ -16,24 +10,24 @@ const citiesSlice = createSlice({
   reducers: {
     addCityId: (
       state: CitiesState,
-      { payload }: PayloadAction<{ id: CityId }>
+      { payload }: PayloadAction<{ id: number }>
     ) => {
-      const ids = new Set(state.ids)
+      const ids = new Set(state)
       ids.add(payload.id)
-      state.ids = Array.from(ids)
+      return Array.from(ids)
     },
     deleteCityId: (
       state: CitiesState,
-      action: PayloadAction<{ id: CityId }>
+      action: PayloadAction<{ id: number }>
     ) => {
-      const ids = new Set(state.ids)
+      const ids = new Set(state)
       const id = action.payload.id
 
       if (ids.has(id)) {
         ids.delete(id)
       }
 
-      state.ids = Array.from(ids)
+      return Array.from(ids)
     },
     hydrate: (state: CitiesState, action: PayloadAction<CitiesState>) => {
       return action.payload

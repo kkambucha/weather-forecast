@@ -10,7 +10,7 @@ const MINUTES_POLLING_INTERVAL = 15 * 60 * 1000
 
 export const Cities: FC = () => {
   const dispatch = useAppDispatch()
-  const { ids } = useAppSelector((state) => state.cities)
+  const ids = useAppSelector((state) => state.cities)
   const queryCitiesIds: string = ids.join(',')
   const fetchParams = !ids.length
     ? { skip: true }
