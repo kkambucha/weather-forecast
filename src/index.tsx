@@ -12,6 +12,7 @@ interface ErrorBoundaryProps {
 
 class ErrorBoundary extends Component<ErrorBoundaryProps> {
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+    // Connect sentry for errors handling here
     console.log(error, errorInfo)
   }
 

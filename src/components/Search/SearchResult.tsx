@@ -1,7 +1,8 @@
 import React, { FC } from 'react'
 
 import { City, isOpenWeatherErrorType } from 'store'
-import addIcon from 'assets/icons/add.svg'
+import { SearchResultItem } from './SearchResultItem'
+import { useKeyboardNavigation } from './hooks'
 import spinnerIcon from 'assets/icons/spinner.svg'
 import './SearchResult.scss'
 
@@ -24,6 +25,8 @@ export const SearchResult: FC<SearchResultProps> = ({
   result,
   onSelect,
 }) => {
+  const [activeCursor] = useKeyboardNavigation(result ? result.length : 0)
+
   return (
     <div className="SearchResult">
       <div className="SearchResult_container">
@@ -60,26 +63,14 @@ export const SearchResult: FC<SearchResultProps> = ({
               <>
                 {result && (
                   <ul className="SearchResult_list">
-                    {result.map((city: City) => (
-                      <li key={city.id} className="SearchResult_listItem">
-                        <button
-                          type="button"
-                          className="SearchResult_button"
-                          onClick={() => onSelect(city.id)}
-                        >
-                          <span className="SearchResult_buttonContent">
-                            <span className="SearchResult_description">
-                              <span className="SearchResult_cityName">
-                                {city.name}, {city.sys.country}
-                              </span>
-                              <span className="SearchResult_coords">
-                                {city.coord.lat} {city.coord.lon}
-                              </span>
-                            </span>
-                            <img src={addIcon} alt="Add" />
-                          </span>
-                        </button>
-                      </li>
+                    {result.map((city: City, index) => (
+                      <SearchResultItem
+                        key={city.id}
+                        city={city}
+                        index={index}
+                        activeCursor={activeCursor}
+                        onSelect={onSelect}
+                      />
                     ))}
                   </ul>
                 )}
