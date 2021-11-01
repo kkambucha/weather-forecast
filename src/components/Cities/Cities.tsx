@@ -12,15 +12,12 @@ export const Cities: FC = () => {
   const dispatch = useAppDispatch()
   const { ids } = useAppSelector((state) => state.cities)
   const queryCitiesIds: string = ids.join(',')
-
-  // TODO: Spread operator looks strange in this place
+  const fetchParams = !ids.length
+    ? { skip: true }
+    : { pollingInterval: MINUTES_POLLING_INTERVAL }
   const { data, error } = cityApiSlice.useFetchCitiesByIdsQuery(
     queryCitiesIds,
-    {
-      ...(!ids.length
-        ? { skip: true }
-        : { pollingInterval: MINUTES_POLLING_INTERVAL }),
-    }
+    fetchParams
   )
   const isEmpty = !data || !data.length || !ids.length
 
@@ -34,11 +31,13 @@ export const Cities: FC = () => {
   return (
     <div>
       {error ? (
-        <div>
-          {isOpenWeatherErrorType(error) &&
-            error.data &&
-            `Error: ${error.data.message}`}
-          <h1>Error</h1>
+        <div className="col-1">
+          <div className="Cities_empty">
+            <div className="Cities_emptyTitle">Something went wrong</div>
+            {isOpenWeatherErrorType(error) &&
+              error.data &&
+              `${error.data.message}`}
+          </div>
         </div>
       ) : (
         <div className="row">
@@ -46,19 +45,18 @@ export const Cities: FC = () => {
             <div className="col-1">
               <div className="Cities_empty">
                 <div className="Cities_emptyTitle">
-                  There is no selected city
+                  There is no city selected
                 </div>
-                Just find and add something
+                Just find and add some
               </div>
             </div>
           ) : (
             <>
-              {data &&
-                data.map((city) => (
-                  <div className="col-4 Cities_city" key={city.id}>
-                    <City city={city} onDelete={handleOnCityDelete} />
-                  </div>
-                ))}
+              {data.map((city) => (
+                <div className="col-4 Cities_city" key={city.id}>
+                  <City city={city} onDelete={handleOnCityDelete} />
+                </div>
+              ))}
             </>
           )}
         </div>
