@@ -43,7 +43,14 @@ export const Cities: FC = () => {
       ) : (
         <div className="row">
           {isEmpty ? (
-            <div>Empty</div>
+            <div className="col-1">
+              <div className="Cities_empty">
+                <div className="Cities_emptyTitle">
+                  There is no selected city
+                </div>
+                Just find and add something
+              </div>
+            </div>
           ) : (
             <>
               {data &&
