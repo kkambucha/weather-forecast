@@ -34,5 +34,11 @@ interface OpenWeatherError {
   }
 }
 
-export const isOpenWeatherErrorType = (error: any): error is OpenWeatherError =>
-  Boolean(error && 'status' in error)
+export const isOpenWeatherErrorType = (
+  error: unknown
+): error is OpenWeatherError => {
+  if (typeof error === 'object') {
+    Boolean(error && 'status' in error)
+  }
+  return false
+}
