@@ -57,30 +57,33 @@ export const SearchResult: FC<SearchResultProps> = ({
                 />
               </div>
             ) : (
-              <ul className="SearchResult_list">
-                {result &&
-                  result.map((city: City) => (
-                    <li key={city.id} className="SearchResult_listItem">
-                      <button
-                        type="button"
-                        className="SearchResult_button"
-                        onClick={() => onSelect(city.id)}
-                      >
-                        <span className="SearchResult_buttonContent">
-                          <span className="SearchResult_description">
-                            <span className="SearchResult_cityName">
-                              {city.name}, {city.sys.country}
+              <>
+                {result && (
+                  <ul className="SearchResult_list">
+                    {result.map((city: City) => (
+                      <li key={city.id} className="SearchResult_listItem">
+                        <button
+                          type="button"
+                          className="SearchResult_button"
+                          onClick={() => onSelect(city.id)}
+                        >
+                          <span className="SearchResult_buttonContent">
+                            <span className="SearchResult_description">
+                              <span className="SearchResult_cityName">
+                                {city.name}, {city.sys.country}
+                              </span>
+                              <span className="SearchResult_coords">
+                                {city.coord.lat} {city.coord.lon}
+                              </span>
                             </span>
-                            <span className="SearchResult_coords">
-                              {city.coord.lat} {city.coord.lon}
-                            </span>
+                            <img src={addIcon} alt="Add" />
                           </span>
-                          <img src={addIcon} alt="Add" />
-                        </span>
-                      </button>
-                    </li>
-                  ))}
-              </ul>
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </>
             )}
           </>
         )}
