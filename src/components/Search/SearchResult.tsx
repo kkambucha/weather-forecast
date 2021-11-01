@@ -27,7 +27,7 @@ export const SearchResult: FC<SearchResultProps> = ({
   return (
     <div className="SearchResult">
       <div className="SearchResult_container">
-        {isError && (
+        {isError ? (
           <span className="SearchResult_text">
             <span className="SearchResult_textTitle">Something went wrong</span>
             <span className="SearchResult_textDescription">
@@ -36,28 +36,27 @@ export const SearchResult: FC<SearchResultProps> = ({
                 : 'Try to check connection'}
             </span>
           </span>
-        )}
-        {isEmpty && (
-          <span className="SearchResult_text">
-            <span className="SearchResult_textTitle">
-              City called &laquo;{cityName}&raquo; was not found
-            </span>
-            <span className="SearchResult_textDescription">
-              Try different city name
-            </span>
-          </span>
-        )}
-        {isFetching ? (
-          <div className="SearchResult_spinner">
-            <img
-              className="SearchResult_spinnerIcon"
-              src={spinnerIcon}
-              alt=""
-            />
-          </div>
         ) : (
           <>
-            {!isError && (
+            {isEmpty && (
+              <span className="SearchResult_text">
+                <span className="SearchResult_textTitle">
+                  City called &laquo;{cityName}&raquo; was not found
+                </span>
+                <span className="SearchResult_textDescription">
+                  Try different city name
+                </span>
+              </span>
+            )}
+            {isFetching ? (
+              <div className="SearchResult_spinner">
+                <img
+                  className="SearchResult_spinnerIcon"
+                  src={spinnerIcon}
+                  alt=""
+                />
+              </div>
+            ) : (
               <ul className="SearchResult_list">
                 {result &&
                   result.map((city: City) => (
