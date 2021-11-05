@@ -17,11 +17,11 @@ export const Cities: FC = () => {
   const fetchParams = !ids.length
     ? { skip: true }
     : { pollingInterval: MINUTES_POLLING_INTERVAL }
-  const { data, error } = cityApiSlice.useFetchCitiesByIdsQuery(
+  const { data: cities, error } = cityApiSlice.useFetchCitiesByIdsQuery(
     queryCitiesIds,
     fetchParams
   )
-  const isEmpty = !data || !data.length || !ids.length
+  const isEmpty = !cities || !cities.length || !ids.length
 
   const handleOnCityDelete = useCallback(
     (cityId: number) => {
@@ -57,7 +57,7 @@ export const Cities: FC = () => {
             </div>
           ) : (
             <>
-              {data.map((city) => (
+              {cities.map((city) => (
                 <div className="col-4 Cities_city" key={city.id}>
                   <City city={city} onDelete={handleOnCityDelete} />
                 </div>

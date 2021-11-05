@@ -1,8 +1,8 @@
 import React, { FC, useCallback, useEffect, useState } from 'react'
 
-import { City, useAppDispatch, useAppSelector } from 'store'
 import { isGeolocationAvailable, useGeolocation } from 'libs/geolocation'
 import { setToLocalStorage, getFromLocalStorage } from 'libs/localstorage'
+import { City, useAppDispatch, useAppSelector } from 'store'
 import { cityApiSlice } from 'store/slices/cityApi.slice'
 import { addCityId } from 'store/slices/cities.slice'
 import { OutsideClickWatcher } from 'components/OutsideClickWatcher'
