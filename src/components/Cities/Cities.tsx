@@ -3,6 +3,8 @@ import React, { FC, useCallback } from 'react'
 import { isOpenWeatherErrorType, useAppDispatch, useAppSelector } from 'store'
 import { cityApiSlice } from 'store/slices/cityApi.slice'
 import { deleteCityId } from 'store/slices/cities.slice'
+import { ShowIfEnabled } from 'components/ShowIfEnabled'
+import { FindModal } from 'components/FindModal'
 import { City } from 'components/City'
 import './Cities.scss'
 
@@ -30,6 +32,9 @@ export const Cities: FC = () => {
 
   return (
     <div className="Cities">
+      <ShowIfEnabled name="geolocation">
+        <FindModal />
+      </ShowIfEnabled>
       {error ? (
         <div className="col-1">
           <div className="Cities_empty">

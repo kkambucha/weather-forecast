@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 import cn from 'classnames'
 
 import { City } from 'store'
-import { useFocus } from './hooks'
+import { useFocus } from 'components/Search/hooks'
 import './SearchResultItem.scss'
 import addIcon from 'assets/icons/add.svg'
 
@@ -10,7 +10,7 @@ interface SearchResultItemProps {
   index: number
   city: City
   disabled: boolean
-  activeCursor: number
+  activeCursor?: number
   onSelect: (cityId: number) => void
 }
 

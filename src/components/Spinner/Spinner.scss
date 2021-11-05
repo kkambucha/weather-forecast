@@ -1,0 +1,12 @@
+.Spinner {
+  padding: 30px 0 27px;
+  width: 100%;
+  text-align: center;
+}
+
+.Spinner_icon {
+  animation-name: spin;
+  animation-duration: .6s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}

@@ -1,9 +1,9 @@
 import React, { FC } from 'react'
 
 import { City, isOpenWeatherErrorType } from 'store'
-import { SearchResultItem } from './SearchResultItem'
+import { SearchResultItem } from 'components/SearchResultItem'
+import { Spinner } from 'components/Spinner'
 import { useKeyboardNavigation } from './hooks'
-import spinnerIcon from 'assets/icons/spinner.svg'
 import './SearchResult.scss'
 
 interface SearchResultProps {
@@ -54,13 +54,7 @@ export const SearchResult: FC<SearchResultProps> = ({
               </span>
             )}
             {isFetching ? (
-              <div className="SearchResult_spinner">
-                <img
-                  className="SearchResult_spinnerIcon"
-                  src={spinnerIcon}
-                  alt=""
-                />
-              </div>
+              <Spinner />
             ) : (
               <>
                 {result && (
