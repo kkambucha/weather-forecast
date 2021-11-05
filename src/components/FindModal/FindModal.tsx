@@ -17,6 +17,13 @@ export const FindModal: FC = () => {
   const addedCitiesIds = useAppSelector((state) => state.cities)
   const [locationPosition, geoLocationStatus] = useGeolocation()
   const [isOpen, setIsOpen] = useState(false)
+  const fetchParams = isOpen ? {} : { skip: true }
+  const {
+    data: result,
+    error,
+    isFetching,
+  } = cityApiSlice.useFetchCitiesByCoordsQuery(locationPosition, fetchParams)
+  const isEmpty = !isFetching && result && !result.length
 
   const handleOnSelect = useCallback(
     (id: number) => {
@@ -28,13 +35,6 @@ export const FindModal: FC = () => {
     setIsOpen(false)
     setToLocalStorage(FIND_MODAL_CLOSED_STATUS_NAME, true)
   }
-  const fetchParams = isOpen ? {} : { skip: true }
-  const {
-    data: result,
-    error,
-    isFetching,
-  } = cityApiSlice.useFetchCitiesByCoordsQuery(locationPosition, fetchParams)
-  const isEmpty = !isFetching && result && !result.length
 
   // TODO: Refactor: it will be great to avoid useEffect here
   useEffect(() => {
