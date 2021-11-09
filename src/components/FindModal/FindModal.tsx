@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useEffect, useState } from 'react'
+import React, { FC, useCallback, useState } from 'react'
 
 import { isGeolocationAvailable, useGeolocation } from 'libs/geolocation'
 import { setToLocalStorage, getFromLocalStorage } from 'libs/localstorage'
@@ -15,8 +15,13 @@ const FIND_MODAL_CLOSED_STATUS_NAME = 'find_modal_closed'
 export const FindModal: FC = () => {
   const dispatch = useAppDispatch()
   const addedCitiesIds = useAppSelector((state) => state.cities)
-  const [locationPosition, geoLocationStatus] = useGeolocation()
-  const [isOpen, setIsOpen] = useState(false)
+  const [locationPosition, geoLocationServiceLocalStatus] = useGeolocation()
+  const [isOpeningEnabled, setIsOpeningEnabled] = useState(
+    () =>
+      isGeolocationAvailable() &&
+      !getFromLocalStorage(FIND_MODAL_CLOSED_STATUS_NAME)
+  )
+  const isOpen = isOpeningEnabled && geoLocationServiceLocalStatus === 'allowed'
   const fetchParams = isOpen ? {} : { skip: true }
   const {
     data: result,
@@ -32,19 +37,9 @@ export const FindModal: FC = () => {
     [dispatch]
   )
   const handleClose = () => {
-    setIsOpen(false)
+    setIsOpeningEnabled(false)
     setToLocalStorage(FIND_MODAL_CLOSED_STATUS_NAME, true)
   }
-
-  // TODO: Refactor: it will be great to avoid useEffect here
-  useEffect(() => {
-    setIsOpen(
-      () =>
-        isGeolocationAvailable() &&
-        geoLocationStatus !== 'blocked' &&
-        !getFromLocalStorage(FIND_MODAL_CLOSED_STATUS_NAME)
-    )
-  }, [geoLocationStatus])
 
   return (
     <>
