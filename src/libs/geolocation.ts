@@ -20,7 +20,8 @@ export const useGeolocation = (): [Geolocation, string] => {
 
   useEffect(() => {
     if (isGeolocationAvailable()) {
-      navigator.geolocation.getCurrentPosition(
+      const geolocation = navigator.geolocation
+      const watchId = geolocation.watchPosition(
         ({ coords: { latitude, longitude } }: GeolocationPosition) => {
           setPosition({
             latitude,
@@ -34,6 +35,10 @@ export const useGeolocation = (): [Geolocation, string] => {
           }
         }
       )
+
+      return () => {
+        geolocation.clearWatch(watchId)
+      }
     }
   }, [])
 
