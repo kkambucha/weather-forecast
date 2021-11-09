@@ -15,7 +15,7 @@
   padding: 24px 0 0;
 
   @include g-responsive-after(sm) {
-    padding: 24px 0;
+    padding: 24px 0 27px 0;
   }
 }
 

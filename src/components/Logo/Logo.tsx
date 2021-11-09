@@ -5,12 +5,10 @@ import './Logo.scss'
 
 export const Logo: FC = () => {
   return (
-    <div className="Logo_container">
-      <div className="Logo_imageContainer">
-        <a href="/" title="Weather App" tabIndex={0}>
-          <img className="Logo_image" src={logoIcon} alt="logo" />
-        </a>
-      </div>
+    <div className="Logo">
+      <a href="/" title="Weather App" className="Logo_link" tabIndex={0}>
+        <img src={logoIcon} alt="logo" />
+      </a>
     </div>
   )
 }
