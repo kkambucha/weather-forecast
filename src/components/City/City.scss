@@ -1,3 +1,4 @@
+@import 'styles/breakpoints';
 @import 'styles/variables';
 
 .City {
@@ -16,6 +17,11 @@
   padding: 24px 32px 0 32px;
   border-top: 1px solid $gray-200;
   display: flex;
+  flex-direction: column;
+
+  @include g-responsive-after(xsm) {
+    flex-direction: row;
+  }
 }
 
 .City_name {

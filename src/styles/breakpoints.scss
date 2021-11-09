@@ -1,9 +1,14 @@
+$breakpoint-xsm: 400px;
 $breakpoint-sm: 568px;
 $breakpoint-md: 768px;
 $breakpoint-lg: 1024px;
 
 @mixin g-responsive-after($size) {
-  @if $size == sm {
+  @if $size == xsm {
+    @media only screen and (min-width: $breakpoint-xsm) {
+      @content;
+    }
+  } @else if $size == sm {
     @media only screen and (min-width: $breakpoint-sm) {
       @content;
     }
